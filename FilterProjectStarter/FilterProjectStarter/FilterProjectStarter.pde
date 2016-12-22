@@ -146,9 +146,25 @@ void draw()
       }   
     }
 
-    if (Effect1)
-    {
-      // complete this section
+    if (Effect1) {
+        int i = picStart;
+        while (i < picEnd) {
+          color c = pixels[i];
+          if (i % 2 != 0) {
+            float gray = (red(c)+green(c)+blue(c))/3.0;  //average the RGB colors
+            pixels[i] = color(gray, gray, gray);
+            i = i + 1;
+            if (i % width >= picWidth) {      // This will ignore anything on the line that 
+              i = i + width - picWidth;       // after the image (such as buttons)
+            }
+          } else {
+            float saturated = (red(c)+green(c)+blue(c)) * 3.0;
+            pixels[i] = color(saturated, saturated, saturated);
+            i = i + 1;
+            if (i % width >= picWidth) {      // This will ignore anything on the line that 
+              i = i + width - picWidth;       // after the image (such as buttons)
+            }
+          }
     }
 
     if (Effect2)
