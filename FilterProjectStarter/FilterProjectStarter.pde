@@ -15,7 +15,7 @@
 
 boolean PicLoaded = false;
 boolean Grayscale = false;
-boolean Effect1 = false;
+boolean martianEffect = false;
 boolean Effect2 = false;
 boolean Effect3 = false;
 int picWidth = 0;
@@ -78,13 +78,13 @@ void draw()
   fill(55);
   text("Grayscale", 680, 225);
   
-  if (Effect1)
+  if (martianEffect)
     fill(#FFFF7D);    //Effect on means a yellow lighted button
   else
     fill(255);
   rect(660, 250, 130, 40, 10);
   fill(55);
-  text("Effect One", 680, 275);
+  text("Martian Effect", 680, 275);
 
   if (Effect2)
     fill (#FFFF7D);     //Effect on means a yellow lighted button 
@@ -146,26 +146,16 @@ void draw()
       }   
     }
 
-    if (Effect1) {
-        int i = picStart;
-        while (i < picEnd) {
-          color c = pixels[i];
-          if (i % 2 != 0) {
-            float gray = (red(c)+green(c)+blue(c))/3.0;  //average the RGB colors
-            pixels[i] = color(gray, gray, gray);
-            i = i + 1;
-            if (i % width >= picWidth) {      // This will ignore anything on the line that 
-              i = i + width - picWidth;       // after the image (such as buttons)
-            }
-          } else {
-            float saturated = (red(c)+green(c)+blue(c)) * 3.0;
-            pixels[i] = color(saturated, saturated, saturated);
-            i = i + 1;
-            if (i % width >= picWidth) {      // This will ignore anything on the line that 
-              i = i + width - picWidth;       // after the image (such as buttons)
-            }
-          }
-       }
+    if (martianEffect) {
+      int i = picStart;
+      while (i < picEnd) {
+        color c = pixels[i];
+        pixels[i] = color(red(c) * 3, green(c - 10), blue(c - 10) / 3);
+        i = i + 1;
+        if (i % width >= picWidth) {       // This will ignore anything on the line that 
+          i = i + width - picWidth;        // after the image (such as buttons)
+        }
+      }
     }
 
     if (Effect2)
@@ -213,7 +203,7 @@ void mousePressed()
   
   if (mouseX>660 && mouseX<790 && mouseY>250 && mouseY<290 && PicLoaded)
   {
-    Effect1 = !Effect1;
+    martianEffect = !martianEffect;
   } 
 
   if (mouseX>660 && mouseX<790 && mouseY>300 && mouseY<340 && PicLoaded)
@@ -241,7 +231,7 @@ void infileSelected(File selection)
     img = loadImage(selection.getAbsolutePath());
     PicLoaded = true;
     Grayscale = false;
-    Effect1 = false;
+    martianEffect = false;
     Effect2 = false;
     Effect3 = false;
     redraw();
