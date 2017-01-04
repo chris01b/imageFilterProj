@@ -165,6 +165,7 @@ void draw()
               i = i + width - picWidth;       // after the image (such as buttons)
             }
           }
+       }
     }
 
     if (Effect2)
@@ -183,7 +184,7 @@ void draw()
   
   fill(255);
   noStroke();
-}}
+}
 
 void mouseClicked() {
   
