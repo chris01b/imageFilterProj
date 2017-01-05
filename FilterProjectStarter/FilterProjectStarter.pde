@@ -179,7 +179,7 @@ void draw()
       }
     }
     
-    if (movePixels ) {
+    if (movePixels) {
       int i = picStart;
       while (i < picEnd) {
         color c = pixels[i + int(random(100))];
