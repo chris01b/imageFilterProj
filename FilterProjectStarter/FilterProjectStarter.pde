@@ -150,10 +150,10 @@ void draw()
       int i = picStart;
       while (i < picEnd) {
         color c = pixels[i];
-        pixels[i] = color(red(c) * 3, green(c - 10), blue(c - 10) / 3);
+        pixels[i] = color(red(c) * 3, green(c - 10), blue(c - 10) * 3);// Martian Effect
         i = i + 1;
-        if (i % width >= picWidth) {       // This will ignore anything on the line that 
-          i = i + width - picWidth;        // after the image (such as buttons)
+        if (i % width >= picWidth) {       // This will ignore anything on the line that
+          i = i + width - picWidth;       // after the image (such as buttons)
         }
       }
     }
