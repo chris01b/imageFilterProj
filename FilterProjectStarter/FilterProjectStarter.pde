@@ -86,7 +86,7 @@ void draw()
   fill(55);
   text("Martian Effect", 680, 275);
 
-  if (Effect2)
+  if (emphasize)
     fill (#FFFF7D);     //Effect on means a yellow lighted button 
   else
     fill(255); 
@@ -224,7 +224,7 @@ void mousePressed()
 
   if (mouseX>660 && mouseX<790 && mouseY>300 && mouseY<340 && PicLoaded)
   {
-    Effect2 = !Effect2;
+    emphasize = !emphasize;
   }  
 
   if (mouseX>660 && mouseX<790 && mouseY>350 && mouseY<390 && PicLoaded)
@@ -248,7 +248,7 @@ void infileSelected(File selection)
     PicLoaded = true;
     Grayscale = false;
     martianEffect = false;
-    Effect2 = false;
+    emphasize = false;
     Effect3 = false;
     redraw();
   }
