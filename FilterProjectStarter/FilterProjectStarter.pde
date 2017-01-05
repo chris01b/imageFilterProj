@@ -17,7 +17,7 @@ boolean PicLoaded = false;
 boolean Grayscale = false;
 boolean martianEffect = false;
 boolean emphasize = false;
-boolean Effect3 = false;
+boolean movePixels = false;
 int picWidth = 0;
 int picHeight = 0;
 PImage img;
@@ -94,13 +94,13 @@ void draw()
   fill(55);
   text("Emphasize Effect", 680, 325);
 
-  if (Effect3)
+  if (movePixels)
     fill (#FFFF7D);    //Effect on means a yellow lighted button
   else
     fill(255);   
   rect(660, 350, 130, 40, 10);
   fill(55);
-  text("Effect Three", 680, 375);
+  text("Move Pixels", 680, 375);
 
   noStroke();
   textSize(16);
@@ -153,7 +153,7 @@ void draw()
         pixels[i] = color(red(c) * 3, green(c - 10), blue(c - 10) / 3);// Martian Effect
         i = i + 1;
         if (i % width >= picWidth) {       // This will ignore anything on the line that
-          i = i + width - picWidth;       // after the image (such as buttons)
+          i = i + width - picWidth;        // after the image (such as buttons)
         }
       }
     }
@@ -179,7 +179,16 @@ void draw()
       }
     }
     
-    if (Effect3){
+    if (movePixels ) {
+      int i = picStart;
+      while (i < picEnd) {
+        color c = pixels[i + int(random(100))];
+        pixels[i] = color(red(c), green(c), blue(c));
+        i = i + 1;
+        if (i % width >= picWidth) {       // This will ignore anything on the line that
+          i = i + width - picWidth;        // after the image (such as buttons)
+        }
+      }
     }
     
     updatePixels(); 
@@ -227,7 +236,7 @@ void mousePressed()
 
   if (mouseX>660 && mouseX<790 && mouseY>350 && mouseY<390 && PicLoaded)
   {
-    Effect3 = !Effect3;
+    movePixels = !movePixels;
   } 
 
   redraw();
@@ -247,7 +256,7 @@ void infileSelected(File selection)
     Grayscale = false;
     martianEffect = false;
     emphasize = false;
-    Effect3 = false;
+    movePixels = false;
     redraw();
   }
 }
