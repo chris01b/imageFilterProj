@@ -92,7 +92,7 @@ void draw()
     fill(255); 
   rect(660, 300, 130, 40, 10);
   fill(55);
-  text("Effect Two", 680, 325);
+  text("Emphasize Effect", 680, 325);
 
   if (Effect3)
     fill (#FFFF7D);    //Effect on means a yellow lighted button
