@@ -16,7 +16,7 @@
 boolean PicLoaded = false;
 boolean Grayscale = false;
 boolean martianEffect = false;
-boolean Effect2 = false;
+boolean emphasize = false;
 boolean Effect3 = false;
 int picWidth = 0;
 int picHeight = 0;
@@ -158,9 +158,25 @@ void draw()
       }
     }
 
-    if (Effect2)
+    if (emphasize)
     {
-      // complete this section
+      int i = picStart;
+      while (i < picEnd) 
+      {
+        color c = pixels[i];
+        if (red(c) > (green(c) + blue(c))/2) {
+          pixels[i] = color(red(c), 0, 0);
+        }
+        if (green(c) > (red(c) + blue(c))/2) {
+          pixels[i] = color(0, green(c), 0);
+        }
+        if (blue(c) > (green(c) + red(c))/2) {
+          pixels[i] = color(0, 0, blue(c));
+        }
+        i = i + 1;
+        if (i % width >= picWidth)        // This will ignore anything on the line that 
+          i = i + width - picWidth;       // after the image (such as buttons)
+      }
     }
     
     if (Effect3)
